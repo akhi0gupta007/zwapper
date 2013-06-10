@@ -41,9 +41,9 @@ public class HomeController
     private UserValidator		  validator;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String home( ModelMap model )
+    public String home( User activeUser, ModelMap model )
 	{
-	log.info("HomeController home: "+currentUserDetails());
+	log.info("HomeController home: " + currentUserDetails());
 	User user = new User();
 	model.addAttribute("customer", user);
 	return "customer";
@@ -61,7 +61,7 @@ public class HomeController
 	return null;
 	}
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.GET)
     public String processLogin( @ModelAttribute("customer")
     User user, BindingResult result, SessionStatus status, ModelMap model )
 	{
